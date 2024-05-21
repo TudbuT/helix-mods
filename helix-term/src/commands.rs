@@ -3778,6 +3778,10 @@ pub mod insert {
             doc.apply(&t, view.id);
         }
 
+        // -- TudbuT mod begin
+        helix_view::tt__update_manpage(doc, view.id);
+        // -- TudbuT mod end
+
         helix_event::dispatch(PostInsertChar { c, cx });
     }
 

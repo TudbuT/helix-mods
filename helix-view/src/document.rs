@@ -1144,6 +1144,9 @@ impl Document {
         // TODO: use a transaction?
         self.selections
             .insert(view_id, selection.ensure_invariants(self.text().slice(..)));
+        // -- TudbuT mod begin
+        crate::tt__update_manpage(self, view_id);
+        // -- TudbuT mod end
         helix_event::dispatch(SelectionDidChange {
             doc: self,
             view: view_id,
@@ -1225,6 +1228,9 @@ impl Document {
                     view_id,
                     selection.clone().ensure_invariants(self.text.slice(..)),
                 );
+                // -- TudbuT mod begin
+                crate::tt__update_manpage(self, view_id);
+                // -- TudbuT mod end
                 helix_event::dispatch(SelectionDidChange {
                     doc: self,
                     view: view_id,
