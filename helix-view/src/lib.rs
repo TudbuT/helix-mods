@@ -179,14 +179,14 @@ pub fn tt__update_manpage(doc: &Document, view_id: ViewId) {
 
         const WORD_END: &str = " {}()[],#+-/*;<>&!\"'%$?~^|'\n\r";
 
-        while start != 0 && !WORD_END.contains(&&text[start - 1..start]) {
+        while start != 0 && !WORD_END.contains(text.get(start - 1..start).unwrap_or("\0")) {
             start = match start.checked_sub(1) {
                 Some(n) => n,
                 None => break,
             }
         }
 
-        while end != text.len() && !WORD_END.contains(&&text[end..=end]) {
+        while end != text.len() && !WORD_END.contains(text.get(end..=end).unwrap_or("\0")) {
             end += 1;
         }
 
